@@ -17,6 +17,7 @@
 	  var readline = require('readline');
 	  var {google} = require('googleapis');
 	  var OAuth2 = google.auth.OAuth2;
+    searchquery=request.param("search")
 
 	  // If modifying these scopes, delete your previously saved credentials
 	  // at ~/.credentials/youtube-nodejs-quickstart.json
@@ -149,16 +150,23 @@
 
 	  function searchvideos(auth){
 	 	 var service = google.youtube('v3');
+     if (searchquery){
+       console.log("searchquery");
+     }
+     else{
+       searchquery="good for it"
+     }
 	 	 service.search.list({
 	 		 auth: auth,
 	 		 part: 'snippet',
-	 		 q: 'good for it'
+	 		 q: searchquery
 	 		 }, (err, res) => {
 	 		 if (err) {
 	 			 throw err;
 	 		 }
-	 		 console.log(res.data.items);
-			 return response.view('youtubesearch', {
+	 		 console.log("succesfull search");
+
+			 response.view('youtubesearch', {
 				 Results: JSON.stringify(res.data.items) // '{"name":"binchen"}'
 			 });
 	});

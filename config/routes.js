@@ -35,7 +35,9 @@ module.exports.routes = {
   '/': {
     view: 'homepage'
   },
-  '/youtubesearch':'YoutubesearchController.getdata'
+  '/youtubesearch':'YoutubesearchController.getdata',
+  '/searchengine':'SearchengineController.search',
+  '/searchresult':'SearchengineController.storesearch'
 
   /***************************************************************************
   *                                                                          *
